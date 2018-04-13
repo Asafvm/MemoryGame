@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="il.co.afeka.com.memorygame.GameActivity">
+
+    <include
+        layout="@layout/header"
+        android:id="@+id/gameInfo"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/gameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameInfo"
+        app:layout_constraintVertical_weight="4">
+
+        <ImageButton
+            android:id="@+id/btn1"
+            android:scaleType="fitCenter"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:onClick="mainFunc"
+            android:src="@drawable/pic_star"
+            android:tag="goomba"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/btn2"
+            android:scaleType="fitCenter"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:onClick="mainFunc"
+            android:src="@drawable/pic_star"
+            android:tag="mario"
+            app:layout_constraintLeft_toRightOf="@id/btn1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/btn3"
+            android:scaleType="fitCenter"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:onClick="mainFunc"
+            android:src="@drawable/pic_star"
+            android:tag="goomba"
+app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn1"/>
+
+
+        <ImageButton
+            android:id="@+id/btn4"
+            android:scaleType="fitCenter"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:onClick="mainFunc"
+            android:src="@drawable/pic_star"
+            android:tag="mario"
+            app:layout_constraintLeft_toRightOf="@id/btn3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

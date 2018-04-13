@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">MemoryGame</string>
+
+
+    //MainActivity
+    <string name="welcomeText">Welcome Unknown Player\nEnter your name below</string>
+    <string name="textHint">Your name goes in here...</string>
+    <string name="buttonEnter">Enter</string>
+    <string name="textHintAge">Your age:</string>
+    <string name="textHintName">Your name:</string>
+    <string name="timesup">Sorry, Time\'s up!</string>
+    <string name="ohwell">Oh, Well...</string>
+    <string name="done">Congrats!</string>
+    <string name="ok">OK</string>
+    <string name="alreadyflipped">cannot flip an already flipped tile</string>
+    <string name="bonus">1UP :)</string>
+    <string name="sametile">Cannot select the same tile twice. try again</string>
+    <string name="buttonPlay">Play</string>
+    <string name="nowPlaying">Now Playing\nName:</string>
+    <string name="age">\nAge:</string>
+    <string name="timeremain">Time Remaining:\n</string>
+
+    //MenuActivity
+        //MenuActivity
+        <string-array name="difficulty">
+            <item>Easy</item>
+            <item>Normal</item>
+            <item>Hard</item>
+        </string-array>
+
+
+    //GameActivity
+
+
+</resources>
+
+
