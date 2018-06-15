@@ -40,12 +40,31 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText playerName = findViewById(R.id.playerName);
         final EditText playerAge = findViewById(R.id.playerAge);
-
+        //default
         showTableFragment();
+        ((Button) findViewById(R.id.switchButton)).setText("Show map");
         //showMapFragment();
 
 
         Button mainBtn = findViewById(R.id.enterButton);
+
+        findViewById(R.id.switchButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mScoreTableFragment!=null) {
+                    mScoreTableFragment = null;
+                    showMapFragment();
+                    ((Button) findViewById(R.id.switchButton)).setText("Show Table");
+
+                }else{
+                    mScoreMapFragment = null;
+                    showTableFragment();
+                    ((Button) findViewById(R.id.switchButton)).setText("Show Map");
+
+                }
+            }
+        });
+
         mainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         Fade fade = new Fade();
         fade.setDuration(400);
         mScoreMapFragment.setEnterTransition(fade);
-        mFragmentTransaction.addToBackStack(null);
+        //mFragmentTransaction.addToBackStack(null);
         mFragmentTransaction.replace(R.id.container, mScoreMapFragment).commit();
 
     }
@@ -95,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         Fade fade = new Fade();
         fade.setDuration(400);
         mScoreTableFragment.setEnterTransition(fade);
-        mFragmentTransaction.addToBackStack(null);
+        //mFragmentTransaction.addToBackStack(null);
         mFragmentTransaction.replace(R.id.container, mScoreTableFragment).commit();
     }
     
@@ -112,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         return !(name == null || name.equals(""));
 
     }
-
+/*
     @Override
     public void onBackPressed() {
 
@@ -122,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             finish();
         }
-    }
+    }*/
 
     private BroadcastReceiver ScoreBoardReceiver = new BroadcastReceiver() {
         @Override

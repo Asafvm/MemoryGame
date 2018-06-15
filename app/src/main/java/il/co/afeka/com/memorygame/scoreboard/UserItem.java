@@ -20,8 +20,9 @@ public class UserItem implements Comparable<UserItem> {
 
     @Override
     public int compareTo(@NonNull UserItem o) {
-        return score.compareTo(o.getScore());
+        return (this.score.compareTo(o.getScore()));
     }
+
 
     public String getScore() {
         return score;

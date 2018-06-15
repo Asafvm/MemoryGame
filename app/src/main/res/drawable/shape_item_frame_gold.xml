@@ -18,6 +18,6 @@
 
     <solid android:color="#ffd700" />
     <stroke android:color="#000000"
-        android:width="5dp"/>
+        android:width="2dp"/>
 
 </shape>
