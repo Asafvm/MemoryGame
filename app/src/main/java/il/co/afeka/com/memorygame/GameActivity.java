@@ -1,8 +1,15 @@
 package il.co.afeka.com.memorygame;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
@@ -20,10 +27,14 @@ import android.widget.Toast;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.util.Date;
+
+import il.co.afeka.com.memorygame.scoreboard.DatabaseProvider;
+import il.co.afeka.com.memorygame.scoreboard.UserItem;
 
 import static android.app.PendingIntent.getActivity;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements SensorEventListener {
     private static String savedTAG = "";
     private static int savedID = 0;
     private static boolean secondClick = false;
@@ -34,11 +45,22 @@ public class GameActivity extends AppCompatActivity {
     private int moves;
     private CountDownTimer cdtimer;
     private MediaPlayer mp;
+    private SensorManager mSensorManager;
+    private final float[] mGyroscopeReading = new float[3];
+    private final float[] mAccelerometerReading = new float[3];
+    private final float[] mMagnetometerReading = new float[3];
+
+    private final float[] mRotationMatrix = new float[9];
+    private final float[] mOrientationAngles = new float[3];
+    private UserItem user;
+    DatabaseProvider provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        ClassApplication application = (ClassApplication)getApplication();
+        provider = application.getDatabaseProvider();
 
         play(R.raw.theme);
 
@@ -50,7 +72,7 @@ public class GameActivity extends AppCompatActivity {
             timer = data.getInt("timer");
             cdtimer = createTimer(timer);
             cdtimer.start();
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             Log.e(TAG, e.getMessage());
         }
         switch (data.getInt("set")) {
@@ -79,14 +101,17 @@ public class GameActivity extends AppCompatActivity {
             int pAge = data.getBundle("player").getInt("age");
             final TextView tv = findViewById(R.id.user);
             tv.setText(getString(R.string.nowPlaying) + pName + getString(R.string.age) + pAge);
-        }catch (NullPointerException e){
-            Log.e(TAG,e.getMessage());
+            user = new UserItem("","","","");
+            user.setName(pName);
+            user.setAge(String.valueOf(pAge));
+
+        } catch (NullPointerException e) {
+            Log.e(TAG, e.getMessage());
         }
 
 
-
-
     }
+
     private void playEffect(int id) {
 
         MediaPlayer effect = MediaPlayer.create(getBaseContext(), id);
@@ -162,7 +187,6 @@ public class GameActivity extends AppCompatActivity {
         button.setLayoutParams(layoutParams);
 
 
-
     }
 
 
@@ -179,7 +203,6 @@ public class GameActivity extends AppCompatActivity {
         //insert test for already marked tile
         String curTag = view.getTag().toString();
         int curID = view.getId();
-
         if (!delay) {
             if (curTag.equals("flipped")) {      //check if already flipped
                 Toast.makeText(getBaseContext(), R.string.alreadyflipped, Toast.LENGTH_SHORT).show();
@@ -220,6 +243,11 @@ public class GameActivity extends AppCompatActivity {
                             else {
                                 play(R.raw.win);
                                 cdtimer.cancel();
+                                user.setScore(String.valueOf(score));
+                                Date date = new Date();
+
+                                user.setId(String.valueOf(date.getTime()));
+                                provider.updateRemote(user);
                                 popup(R.string.done);
                             }
 
@@ -259,11 +287,56 @@ public class GameActivity extends AppCompatActivity {
         tvScore.setText(String.valueOf(score));
     }
 
+    private void decScore(int s) {
+        TextView tvScore = findViewById(R.id.score);
+        score -= s;
+        tvScore.setText(String.valueOf(score));
+    }
+
     @Override
     protected void onDestroy() {
         initVars();
         if (mp.isPlaying())
             mp.stop();
+        cdtimer.cancel();
         super.onDestroy();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mSensorManager.unregisterListener(this);
+
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
+            System.arraycopy(event.values, 0, mGyroscopeReading,
+                    0, mGyroscopeReading.length);
+            Log.d(TAG,"Gyro moved: "+event);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+// Update rotation matrix, which is needed to update orientation angles.
+        mSensorManager.getRotationMatrix(mRotationMatrix, null,
+                mGyroscopeReading, mMagnetometerReading);
+
+        // "mRotationMatrix" now has up-to-date information.
+
+        mSensorManager.getOrientation(mRotationMatrix, mOrientationAngles);
+
+        // "mOrientationAngles" now has up-to-date information.
+    }
+
+
 }
+

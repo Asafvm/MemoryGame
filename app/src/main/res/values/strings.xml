@@ -21,17 +21,20 @@
     <string name="timeremain">Time Remaining:\n</string>
 
     //MenuActivity
-        //MenuActivity
-        <string-array name="difficulty">
-            <item>Easy</item>
-            <item>Normal</item>
-            <item>Hard</item>
-        </string-array>
+    //MenuActivity
+    <string-array name="difficulty">
+        <item>Easy</item>
+        <item>Normal</item>
+        <item>Hard</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     //GameActivity
 
-
+    <string name="google_map_key">AIzaSyAsk4L2GHkqpD7GWgka4MhDVIR4KoP_7vk</string>
 </resources>
 
 

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "770453506552",
+    "firebase_url": "https://memorygame-1528913984630.firebaseio.com",
+    "project_id": "memorygame-1528913984630",
+    "storage_bucket": "memorygame-1528913984630.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770453506552:android:03090b2a240d8652",
+        "android_client_info": {
+          "package_name": "il.co.afeka.com.memorygame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770453506552-gfbofm73m1vspvi1c0b4dhcgdecgm4d4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBycsjDXz5tx18TYrc5UR7uokg51st3ROc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

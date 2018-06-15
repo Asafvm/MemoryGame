@@ -1,7 +1,19 @@
-#Wed Apr 11 20:39:20 IDT 2018
-base.0=D\:\\Dropbox\\Study\\codeSpace\\Android\\MemoryGame\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\28
+#Fri Jun 15 00:11:13 IDT 2018
 path.1=classes.dex
-renamed.1=classes2.dex
 path.0=classes.dex
+renamed.5=classes6.dex
+renamed.4=classes5.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
-base.1=D\:\\Dropbox\\Study\\codeSpace\\Android\\MemoryGame\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\27
+base.5=D\:\\Dropbox\\Study\\codeSpace\\Android\\MemoryGame\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\32
+base.4=D\:\\Dropbox\\Study\\codeSpace\\Android\\MemoryGame\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\27
+base.3=D\:\\Dropbox\\Study\\codeSpace\\Android\\MemoryGame\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\30
+base.2=D\:\\Dropbox\\Study\\codeSpace\\Android\\MemoryGame\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\33
+base.1=D\:\\Dropbox\\Study\\codeSpace\\Android\\MemoryGame\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\34
+base.0=D\:\\Dropbox\\Study\\codeSpace\\Android\\MemoryGame\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\31
+path.5=classes.dex
+path.4=classes.dex
+path.3=classes.dex
+path.2=classes.dex

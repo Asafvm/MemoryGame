@@ -14,8 +14,8 @@
         android:id="@+id/gameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gameInfo"
         app:layout_constraintVertical_weight="4">
@@ -29,7 +29,7 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="fish"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
 
@@ -42,7 +42,7 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="fire"
-            app:layout_constraintLeft_toRightOf="@id/btn1"
+            app:layout_constraintStart_toEndOf="@id/btn1"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageButton
@@ -53,7 +53,7 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="goomba"
-            app:layout_constraintLeft_toRightOf="@id/btn2"
+            app:layout_constraintStart_toEndOf="@id/btn2"
             app:layout_constraintTop_toTopOf="parent"/>
 
 
@@ -66,7 +66,7 @@
             android:src="@drawable/pic_star"
             android:tag="mario"
 
-            app:layout_constraintLeft_toRightOf="@id/btn3"
+            app:layout_constraintStart_toEndOf="@id/btn3"
             app:layout_constraintTop_toTopOf="parent"
             />
 
@@ -81,7 +81,7 @@
             android:src="@drawable/pic_star"
             android:tag="plant"
             app:layout_constraintTop_toBottomOf="@id/btn1"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
         <ImageButton
@@ -94,7 +94,7 @@
             android:src="@drawable/pic_star"
             android:tag="luigi"
             app:layout_constraintTop_toBottomOf="@id/btn2"
-            app:layout_constraintLeft_toRightOf="@id/btn5"/>
+            app:layout_constraintStart_toEndOf="@id/btn5"/>
 
         <ImageButton
             android:id="@+id/btn7"
@@ -105,7 +105,7 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="goomba"
-            app:layout_constraintLeft_toRightOf="@id/btn6"
+            app:layout_constraintStart_toEndOf="@id/btn6"
             app:layout_constraintTop_toBottomOf="@id/btn3"/>
 
         <ImageButton
@@ -117,7 +117,7 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="koopa"
-            app:layout_constraintLeft_toRightOf="@id/btn7"
+            app:layout_constraintStart_toEndOf="@id/btn7"
             app:layout_constraintTop_toBottomOf="@id/btn4"
             />
 
@@ -132,7 +132,7 @@
             android:src="@drawable/pic_star"
             android:tag="bullet"
             app:layout_constraintTop_toBottomOf="@id/btn5"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageButton
             android:id="@+id/btn10"
@@ -144,7 +144,7 @@
             android:src="@drawable/pic_star"
             android:tag="coin"
             app:layout_constraintTop_toBottomOf="@id/btn6"
-            app:layout_constraintLeft_toRightOf="@id/btn9"/>
+            app:layout_constraintStart_toEndOf="@id/btn9"/>
 
 
         <ImageButton
@@ -157,7 +157,7 @@
             android:src="@drawable/pic_star"
             android:tag="1up"
             app:layout_constraintTop_toBottomOf="@id/btn7"
-            app:layout_constraintLeft_toRightOf="@id/btn10"/>
+            app:layout_constraintStart_toEndOf="@id/btn10"/>
 
 
         <ImageButton
@@ -170,7 +170,7 @@
             android:src="@drawable/pic_star"
             android:tag="coin"
             app:layout_constraintTop_toBottomOf="@id/btn8"
-            app:layout_constraintLeft_toRightOf="@id/btn11"/>
+            app:layout_constraintStart_toEndOf="@id/btn11"/>
 
         <ImageButton
             android:id="@+id/btn13"
@@ -182,7 +182,7 @@
             android:src="@drawable/pic_star"
             android:tag="mario"
             app:layout_constraintTop_toBottomOf="@id/btn9"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageButton
             android:id="@+id/btn14"
@@ -193,7 +193,7 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="bullet"
-            app:layout_constraintLeft_toRightOf="@id/btn13"
+            app:layout_constraintStart_toEndOf="@id/btn13"
             app:layout_constraintTop_toBottomOf="@id/btn10"/>
 
 
@@ -206,7 +206,7 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="plant"
-            app:layout_constraintLeft_toRightOf="@id/btn14"
+            app:layout_constraintStart_toEndOf="@id/btn14"
             app:layout_constraintTop_toBottomOf="@id/btn11"/>
 
         <ImageButton
@@ -218,7 +218,7 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="fish"
-            app:layout_constraintLeft_toRightOf="@id/btn15"
+            app:layout_constraintStart_toEndOf="@id/btn15"
             app:layout_constraintTop_toBottomOf="@id/btn12"/>
 
 
@@ -231,9 +231,9 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="bowser"
-            app:layout_constraintLeft_toRightOf="@id/btn4"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintStart_toEndOf="@id/btn4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageButton
             android:id="@+id/btn18"
@@ -244,9 +244,9 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="peach"
-            app:layout_constraintLeft_toRightOf="@id/btn8"
+            app:layout_constraintStart_toEndOf="@id/btn8"
             app:layout_constraintTop_toBottomOf="@id/btn17"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
         <ImageButton
@@ -259,8 +259,8 @@
             android:src="@drawable/pic_star"
             android:tag="luigi"
             app:layout_constraintTop_toBottomOf="@id/btn8"
-            app:layout_constraintLeft_toRightOf="@id/btn12"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintStart_toEndOf="@id/btn12"
+            app:layout_constraintEnd_toEndOf="parent"/>
         
         <ImageButton
             android:id="@+id/btn20"
@@ -272,8 +272,8 @@
             android:src="@drawable/pic_star"
             android:tag="koopa"
             app:layout_constraintTop_toBottomOf="@id/btn12"
-            app:layout_constraintLeft_toRightOf="@id/btn16"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintStart_toEndOf="@id/btn16"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
         <ImageButton
@@ -286,7 +286,7 @@
             android:src="@drawable/pic_star"
             android:tag="mashroom"
             app:layout_constraintTop_toBottomOf="@id/btn13"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
         <ImageButton
@@ -299,7 +299,7 @@
             android:src="@drawable/pic_star"
             android:tag="fire"
             app:layout_constraintTop_toBottomOf="@id/btn14"
-            app:layout_constraintLeft_toRightOf="@id/btn21"/>
+            app:layout_constraintStart_toEndOf="@id/btn21"/>
 
         <ImageButton
             android:id="@+id/btn23"
@@ -311,7 +311,7 @@
             android:src="@drawable/pic_star"
             android:tag="mashroom"
             app:layout_constraintTop_toBottomOf="@id/btn15"
-            app:layout_constraintLeft_toRightOf="@id/btn22"/>
+            app:layout_constraintStart_toEndOf="@id/btn22"/>
 
         <ImageButton
             android:id="@+id/btn24"
@@ -322,7 +322,7 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="bowser"
-            app:layout_constraintLeft_toRightOf="@id/btn23"
+            app:layout_constraintStart_toEndOf="@id/btn23"
             app:layout_constraintTop_toBottomOf="@id/btn16"/>
 
 
@@ -335,9 +335,9 @@
             android:onClick="mainFunc"
             android:src="@drawable/pic_star"
             android:tag="peach"
-            app:layout_constraintLeft_toRightOf="@id/btn24"
+            app:layout_constraintStart_toEndOf="@id/btn24"
             app:layout_constraintTop_toBottomOf="@id/btn20"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
