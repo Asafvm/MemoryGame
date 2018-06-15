@@ -2,14 +2,18 @@ package il.co.afeka.com.memorygame.scoreboard;
 
 import android.support.annotation.NonNull;
 
+import java.util.Comparator;
+
 public class UserItem implements Comparable<UserItem> {
     private String id;
     private String age;
     private String name;
     private String score;
-    public UserItem(){
+
+    public UserItem() {
 
     }
+
     public UserItem(String age, String name, String score, String id) {
         this.age = age;
         this.name = name;
@@ -56,4 +60,5 @@ public class UserItem implements Comparable<UserItem> {
     public void setId(String id) {
         this.id = id;
     }
+
 }
