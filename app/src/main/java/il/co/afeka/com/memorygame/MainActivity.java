@@ -1,13 +1,16 @@
 package il.co.afeka.com.memorygame;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,12 +19,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
 
 import il.co.afeka.com.memorygame.scoreboard.DatabaseProvider;
-import il.co.afeka.com.memorygame.scoreboard.MapFragment;
+import il.co.afeka.com.memorygame.scoreboard.ScoreMapFragment;
 import il.co.afeka.com.memorygame.scoreboard.ScoreTableFragment;
 import il.co.afeka.com.memorygame.scoreboard.UserItem;
 import il.co.afeka.com.memorygame.scoreboard.UserViewerAdapter;
@@ -29,8 +33,9 @@ import il.co.afeka.com.memorygame.scoreboard.UserViewerAdapter;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private FragmentManager mFragmentManager;
-    private MapFragment mScoreMapFragment;
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 0;
+    private android.support.v4.app.FragmentManager mFragmentManager;
+    private ScoreMapFragment mScoreMapFragment;
     private ScoreTableFragment mScoreTableFragment;
 
     @Override
@@ -51,17 +56,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.switchButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mScoreTableFragment!=null) {
-                    mScoreTableFragment = null;
-                    showMapFragment();
-                    ((Button) findViewById(R.id.switchButton)).setText("Show Table");
+                getLocationPermission();
 
-                }else{
-                    mScoreMapFragment = null;
-                    showTableFragment();
-                    ((Button) findViewById(R.id.switchButton)).setText("Show Map");
 
-                }
             }
         });
 
@@ -86,19 +83,51 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay!
+                    switchView();
+
+                } else {
+                    // permission denied, boo!
+                    Toast.makeText(this, "No location access", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    private void switchView() {
+        if (mScoreTableFragment != null) {
+            mScoreTableFragment = null;
+            showMapFragment();
+            ((Button) findViewById(R.id.switchButton)).setText("Show Table");
+
+        } else {
+            mScoreMapFragment = null;
+            showTableFragment();
+            ((Button) findViewById(R.id.switchButton)).setText("Show Map");
+
+        }
+    }
+
     private void showMapFragment() {
 
 
-
         mFragmentManager = getSupportFragmentManager();
-        FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+        android.support.v4.app.FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
 
         if (mScoreMapFragment == null) {
-            mScoreMapFragment = new MapFragment();
+            mScoreMapFragment = new ScoreMapFragment();
         }
-        Fade fade = new Fade();
-        fade.setDuration(400);
-        mScoreMapFragment.setEnterTransition(fade);
+        //Fade fade = new Fade();
+        //fade.setDuration(400);
+        //mScoreMapFragment.setEnterTransition(fade);
         //mFragmentTransaction.addToBackStack(null);
         mFragmentTransaction.replace(R.id.container, mScoreMapFragment).commit();
 
@@ -106,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showTableFragment() {
         mFragmentManager = getSupportFragmentManager();
-        FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+        android.support.v4.app.FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
 
         if (mScoreTableFragment == null) {
             mScoreTableFragment = new ScoreTableFragment();
@@ -117,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         //mFragmentTransaction.addToBackStack(null);
         mFragmentTransaction.replace(R.id.container, mScoreTableFragment).commit();
     }
-    
+
     private boolean isValidAge(String s) {
         try {
             Integer.valueOf(s);
@@ -155,12 +184,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-            registerReceiver(ScoreBoardReceiver,
-                    new IntentFilter(DatabaseProvider.BROADCAST_ACTION));
-            if(mScoreTableFragment!=null){
-                updateTable();
+        registerReceiver(ScoreBoardReceiver,
+                new IntentFilter(DatabaseProvider.BROADCAST_ACTION));
+        if (mScoreTableFragment != null) {
+            updateTable();
 
-            }
+        }
 
 
         super.onResume();
@@ -173,10 +202,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void updateTable() {
         RecyclerView recyclerView = findViewById(R.id.recyclerScoresTable);
-        if(recyclerView!=null) {
+        if (recyclerView != null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
             ClassApplication application = (ClassApplication) getApplication();
@@ -192,5 +220,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void getLocationPermission() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            switchView();
+
+        } else {
+            // Permission is not granted
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_LOCATION);
+        }
+    }
 }
 

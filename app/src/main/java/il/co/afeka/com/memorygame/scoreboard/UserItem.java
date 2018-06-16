@@ -9,7 +9,8 @@ public class UserItem implements Comparable<UserItem> {
     private String age;
     private String name;
     private String score;
-
+    private double lng;
+    private double lat;
     public UserItem() {
 
     }
@@ -19,6 +20,9 @@ public class UserItem implements Comparable<UserItem> {
         this.name = name;
         this.score = score;
         this.id = id;
+        this.lat = -1;
+        this.lng = -1;
+
     }
 
 
@@ -61,4 +65,19 @@ public class UserItem implements Comparable<UserItem> {
         this.id = id;
     }
 
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
 }

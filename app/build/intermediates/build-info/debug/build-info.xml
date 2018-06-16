@@ -7,97 +7,87 @@
     format="10"
     ir-eligibility="COMPATIBLE"
     plugin-version="3.1.3"
-    timestamp="1529042998413"
-    token="-4776281252596490285"
+    timestamp="1529161119338"
+    token="-5147824157287911646"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="166" />
+        duration="187" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="20" />
+        duration="13" />
     <task
         name="verifier"
-        duration="4" />
+        duration="3" />
 
     <artifact
-        location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+        location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
         type="SPLIT" />
 
     <build
         build-mode="FULL"
-        ir-eligibility="CLASS_ADDED"
-        timestamp="1529040019784"
-        verifier="COLD_SWAP_REQUESTED" >
+        timestamp="1529159939273"
+        verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1529040885191"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1529161076960"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="IMPLEMENTED_INTERFACES_CHANGE"
-        timestamp="1529042103682"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
     </build>
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1529042998413"
+        timestamp="1529161119338"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="D:\Dropbox\Study\codeSpace\Android\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            location="G:\codeWorkspace\Android_Projects\MemoryGame\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
     </build>
 

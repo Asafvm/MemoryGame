@@ -1,18 +1,25 @@
 package il.co.afeka.com.memorygame;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +42,7 @@ import il.co.afeka.com.memorygame.scoreboard.UserItem;
 import static android.app.PendingIntent.getActivity;
 
 public class GameActivity extends AppCompatActivity implements SensorEventListener {
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 0;
     private static String savedTAG = "";
     private static int savedID = 0;
     private static boolean secondClick = false;
@@ -59,11 +67,10 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        ClassApplication application = (ClassApplication)getApplication();
+        ClassApplication application = (ClassApplication) getApplication();
         provider = application.getDatabaseProvider();
 
         play(R.raw.theme);
-
 
         initVars();
         int timer;
@@ -101,7 +108,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
             int pAge = data.getBundle("player").getInt("age");
             final TextView tv = findViewById(R.id.user);
             tv.setText(getString(R.string.nowPlaying) + pName + getString(R.string.age) + pAge);
-            user = new UserItem("","","","");
+            user = new UserItem("", "", "", "");
             user.setName(pName);
             user.setAge(String.valueOf(pAge));
 
@@ -245,8 +252,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                                 cdtimer.cancel();
                                 user.setScore(String.valueOf(score));
                                 Date date = new Date();
-
                                 user.setId(String.valueOf(date.getTime()));
+                                getUserLocation();
                                 provider.updateRemote(user);
                                 popup(R.string.done);
                             }
@@ -320,7 +327,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
             System.arraycopy(event.values, 0, mGyroscopeReading,
                     0, mGyroscopeReading.length);
-            Log.d(TAG,"Gyro moved: "+event);
+            Log.d(TAG, "Gyro moved: " + event);
         }
     }
 
@@ -334,9 +341,56 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
         mSensorManager.getOrientation(mRotationMatrix, mOrientationAngles);
 
-        // "mOrientationAngles" now has up-to-date information.
+        // "mOrientationAngles" now has up-to-date informatpublic void getLocationPermission() {
+
     }
 
+    public void getUserLocation() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            setLocation();
 
+        } else {
+            // Permission is not granted
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    MY_PERMISSIONS_REQUEST_LOCATION);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay!
+                    setLocation();
+
+                } else {
+                    // permission denied, boo!
+                    Toast.makeText(this, "No location access", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    private void setLocation() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        user.setLng(location.getLongitude());
+        user.setLat(location.getLatitude());
+    }
 }
 
