@@ -6,28 +6,31 @@
     android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/innerContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/scoreTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="High Scores"
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:layout_constraintVertical_weight="0.2"
             app:layout_constraintBottom_toTopOf="@id/mapView"
             app:layout_constraintTop_toTopOf="parent"
 
             />
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mapView"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_weight="0.8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scoreTitle" />
     </android.support.constraint.ConstraintLayout>

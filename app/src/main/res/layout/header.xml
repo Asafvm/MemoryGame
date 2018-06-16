@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout android:id="@+id/gameInfo"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gameInfo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingHorizontal="15dp"
     app:layout_constraintBottom_toTopOf="@id/gameLayout"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_chainStyle="spread"
-    app:layout_constraintVertical_weight="1"
-    android:paddingHorizontal="15dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:layout_constraintVertical_weight="1">
 
     <TextView
         android:id="@+id/user"
@@ -29,8 +29,21 @@
         android:text=""
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/warning"
         app:layout_constraintLeft_toRightOf="@id/timer"
         app:layout_constraintRight_toLeftOf="@id/user"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/timer"
+        app:layout_constraintRight_toLeftOf="@id/user"
+        app:layout_constraintTop_toBottomOf="@id/score"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

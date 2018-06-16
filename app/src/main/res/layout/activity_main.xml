@@ -90,7 +90,7 @@
         android:layout_height="0dp"
         android:layout_margin="5dp"
         android:background="@drawable/shape_window_menu"
-        android:padding="10dp"
+        android:padding="20dp"
         app:layout_constraintVertical_weight="0.3"
         app:layout_constraintTop_toBottomOf="@id/switchButton"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -20,6 +20,8 @@
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/recyclerScoresTable"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintVertical_weight="0.2"
 
         />
     <android.support.v7.widget.RecyclerView
@@ -28,6 +30,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/scoreTitle"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_weight="0.8"
         />
     </android.support.constraint.ConstraintLayout>
 

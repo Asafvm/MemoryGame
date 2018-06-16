@@ -1,12 +1,9 @@
 package il.co.afeka.com.memorygame;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -15,7 +12,6 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -26,15 +22,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileDescriptor;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import il.co.afeka.com.memorygame.scoreboard.DatabaseProvider;
 import il.co.afeka.com.memorygame.scoreboard.UserItem;
@@ -54,7 +53,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private CountDownTimer cdtimer;
     private MediaPlayer mp;
     private SensorManager mSensorManager;
-    private final float[] mGyroscopeReading = new float[3];
+    private final float[] mGravityReading = new float[3];
     private final float[] mAccelerometerReading = new float[3];
     private final float[] mMagnetometerReading = new float[3];
 
@@ -62,6 +61,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private final float[] mOrientationAngles = new float[3];
     private UserItem user;
     DatabaseProvider provider;
+    private boolean tiltWarning = false;
+    HashMap<Integer, String> foundList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         ClassApplication application = (ClassApplication) getApplication();
         provider = application.getDatabaseProvider();
-
+        foundList = new HashMap<Integer, String>();
         play(R.raw.theme);
 
         initVars();
@@ -138,15 +139,32 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         mp.start();
     }
 
-    private CountDownTimer createTimer(int timer) {
+    private CountDownTimer createTimer(final int timer) {
         return new CountDownTimer(timer * 1000, 1000) {
-
+            int i = 0;
 
             @Override
             public void onTick(long millisUntilFinished) {
-                TextView timer = findViewById(R.id.timer);
+                TextView tvTimer = findViewById(R.id.timer);
                 timeRemain = (int) (millisUntilFinished / 1000);
-                timer.setText(getString(R.string.timeremain) + timeRemain);
+                tvTimer.setText(getString(R.string.timeremain) + timeRemain);
+
+                if (tiltWarning) {
+                    if (i % 5 == 0 && !foundList.isEmpty()) {
+                        Iterator<Integer> i = foundList.keySet().iterator();
+                        int id = i.next();
+                        findViewById(id).setTag(foundList.get(id));
+                        ((ImageButton) findViewById(id)).setImageResource(R.drawable.pic_star);
+
+                        id = i.next();
+                        findViewById(id).setTag(foundList.get(id));
+                        ((ImageButton) findViewById(id)).setImageResource(R.drawable.pic_star);
+                        moves++;
+                        decScore(moves * (timer - timeRemain));
+
+                    }
+                } else
+                    i = 0;
             }
 
             @Override
@@ -161,6 +179,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         };
 
     }
+
 
     private void popup(int messege) {
         final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
@@ -238,6 +257,10 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                         img2.setImageResource(getResources().getIdentifier("pic_" + curTag, "drawable", getPackageName()));
                         if (curTag.equals(savedTAG)) {      //test for same tag
                             Log.d(TAG, "Same Image");
+
+                            foundList.put(img.getId(), img.getTag().toString());
+                            foundList.put(img2.getId(), img2.getTag().toString());
+
                             img2.setTag("flipped");
                             img.setTag("flipped");
                             addScore(100);
@@ -312,7 +335,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY), SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -324,31 +347,34 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
-            System.arraycopy(event.values, 0, mGyroscopeReading,
-                    0, mGyroscopeReading.length);
+        if (event.sensor.getType() == Sensor.TYPE_GRAVITY) {
+            System.arraycopy(event.values, 0, mGravityReading,
+                    0, mGravityReading.length);
             Log.d(TAG, "Gyro moved: " + event);
+            if (event.values[1] < 5.5 || event.values[1] > 8.5) {
+                ((TextView) findViewById(R.id.warning)).setTextColor(Color.RED);
+                ((TextView) findViewById(R.id.warning)).setText("Tilt Warning");
+                tiltWarning = true;
+            } else {
+                ((TextView) findViewById(R.id.warning)).setTextColor(Color.GREEN);
+                ((TextView) findViewById(R.id.warning)).setText("Safe");
+                tiltWarning = false;
+
+            }
+            //((TextView)findViewById(R.id.warning)).setText(Arrays.toString(event.values));
         }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-// Update rotation matrix, which is needed to update orientation angles.
         mSensorManager.getRotationMatrix(mRotationMatrix, null,
-                mGyroscopeReading, mMagnetometerReading);
-
-        // "mRotationMatrix" now has up-to-date information.
-
+                mGravityReading, mMagnetometerReading);
         mSensorManager.getOrientation(mRotationMatrix, mOrientationAngles);
-
-        // "mOrientationAngles" now has up-to-date informatpublic void getLocationPermission() {
-
     }
 
     public void getUserLocation() {
         if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             setLocation();
-
         } else {
             // Permission is not granted
             ActivityCompat.requestPermissions(this,
