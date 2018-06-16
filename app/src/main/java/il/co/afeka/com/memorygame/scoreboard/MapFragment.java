@@ -110,6 +110,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         if (mMap != null) {
+            initLocation();
             LatLng cameraPos = null;
             //DataBaseHandler dataBaseHandler = new DataBaseHandler(getActivity().getApplicationContext());
             //for (Winner winRecord : dataBaseHandler.getTableRecord(mode)){
@@ -138,4 +139,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
 }
