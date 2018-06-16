@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         mScoreTableFragment.setEnterTransition(fade);
         //mFragmentTransaction.addToBackStack(null);
         mFragmentTransaction.replace(R.id.container, mScoreTableFragment).commit();
+        updateTable();
     }
 
     private boolean isValidAge(String s) {

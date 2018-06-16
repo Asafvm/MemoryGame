@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".scoreboard.scoreMapFragment">
+    android:layout_height="match_parent">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/scoreTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="High Scores"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/mapView"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mapView"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scoreTitle" />
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>

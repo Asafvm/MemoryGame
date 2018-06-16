@@ -18,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -48,13 +49,8 @@ public class ScoreMapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_map, container, false);
-
-
+        View view = inflater.inflate(R.layout.fragment_score_map, container, false);
         setMapIfNeeded();
-
-
-
         return view;
     }
 
@@ -65,7 +61,7 @@ public class ScoreMapFragment extends Fragment implements OnMapReadyCallback {
 
     }
     private void setMapIfNeeded() {
-        ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
+        ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapView)).getMapAsync(this);
 
     }
 
@@ -78,30 +74,21 @@ public class ScoreMapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         if (mMap != null) {
-//            initLocation();
-            LatLng cameraPos = null;
-            //DataBaseHandler dataBaseHandler = new DataBaseHandler(getActivity().getApplicationContext());
-            //for (Winner winRecord : dataBaseHandler.getTableRecord(mode)){
-
-            //LatLng latLng = new LatLng(winRecord.getLat(), winRecord.getLng());
-            LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
+            LatLng cameraPos;
             ClassApplication application = (ClassApplication)getActivity().getApplication();
             DatabaseProvider provider = application.getDatabaseProvider();
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            for(final UserItem item :provider.getMyInv()){
+            List<UserItem> users = provider.getMyInv();
+            for(final UserItem item :users){
                 if(!(item.getLat()==-1 && item.getLng()==-1)) {
                     LatLng latLng = new LatLng(item.getLat(), item.getLng());
                     MarkerOptions options = new MarkerOptions().position(latLng).title(item.getName() + " - " + item.getScore());
+                    if(users.indexOf(item) == 0){
+                        options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                    }else if(users.indexOf(item) == 1){
+                        options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    }else if(users.indexOf(item) == 2){
+                        options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+                    }
                     mMap.addMarker(options);
                     mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                         @Override
@@ -113,24 +100,10 @@ public class ScoreMapFragment extends Fragment implements OnMapReadyCallback {
                     });
                     cameraPos = latLng;
                     //}
-                    if (cameraPos != null) {
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPos));
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cameraPos, 8f));
-                    }
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPos));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cameraPos, 8f));
                 }
             }
-//                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//                    @Override
-//                    public boolean onMarkerClick(Marker marker) {
-//                        String winnerName = marker.getTitle();
-//                        LatLng pos = marker.getPosition();
-//                        ((WinnersTableActivity)getActivity()).markTable(winnerName,pos);
-//                        return false;
-//                    }
-//                });
-
-
-
         }
     }
 }

@@ -56,12 +56,12 @@
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\edc728a04ec26f3733084f56e13eca92\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_bar_title_item.xml.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\edc728a04ec26f3733084f56e13eca92\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
@@ -180,24 +180,24 @@
         "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\mipmap-xhdpi\\ic_star.png"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pic_1up.png.flat",
-        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\drawable\\pic_1up.png"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_seekbar_tick_mark_material.xml.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pic_1up.png.flat",
+        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\drawable\\pic_1up.png"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_check_material.xml.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable\\abc_btn_check_material.xml"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
-        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_textfield_search_material.xml.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
+        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
@@ -248,12 +248,12 @@
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\anim\\abc_popup_exit.xml"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-mdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_standard_color_18.png.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\0551dce26022122f068f272239e034b8\\res\\drawable-hdpi-v4\\googleg_standard_color_18.png"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-mdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_text_dark.xml.flat",
@@ -328,12 +328,12 @@
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable\\abc_ratingbar_indicator_material.xml"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\raw_win.mp3.flat",
-        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\raw\\win.mp3"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-hdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\raw_win.mp3.flat",
+        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\raw\\win.mp3"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
@@ -360,24 +360,24 @@
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-hdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_shape_window_menu.xml.flat",
         "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\drawable\\shape_window_menu.xml"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_in_top.xml.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\anim\\abc_slide_in_top.xml"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_longpressed_holo.9.png.flat",
-        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-xhdpi-v4\\abc_list_longpressed_holo.9.png"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_longpressed_holo.9.png.flat",
+        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-xhdpi-v4\\abc_list_longpressed_holo.9.png"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -388,12 +388,12 @@
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable\\abc_ic_menu_overflow_material.xml"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_cab_background_top_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-xxhdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_playbutton.jpg.flat",
@@ -416,12 +416,12 @@
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-xxxhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-xhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -432,16 +432,16 @@
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-hdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-ldrtl-mdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
+        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\0551dce26022122f068f272239e034b8\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_score_map.xml.flat",
         "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\layout\\fragment_score_map.xml"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
-        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\0551dce26022122f068f272239e034b8\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-ldrtl-mdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
@@ -456,12 +456,12 @@
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\layout-v26\\abc_screen_toolbar.xml"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_mode_bar.xml.flat",
-        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\layout\\abc_action_mode_bar.xml"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\0551dce26022122f068f272239e034b8\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_mode_bar.xml.flat",
+        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_btn_colored_text_material.xml.flat",
@@ -524,12 +524,12 @@
         "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\raw\\theme.mp3"
     },
     {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_bg.xml.flat",
-        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\edc728a04ec26f3733084f56e13eca92\\res\\drawable\\notification_bg.xml"
-    },
-    {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9637b1a22bf07d2e1872f19e0e82cea6\\res\\drawable-xxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_bg.xml.flat",
+        "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\edc728a04ec26f3733084f56e13eca92\\res\\drawable\\notification_bg.xml"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -654,10 +654,6 @@
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
         "source": "C:\\Users\\Asaf\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\0551dce26022122f068f272239e034b8\\res\\drawable-xxhdpi-v4\\googleg_disabled_color_18.png"
-    },
-    {
-        "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_map.xml.flat",
-        "source": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\src\\main\\res\\layout\\fragment_map.xml"
     },
     {
         "merged": "G:\\codeWorkspace\\Android_Projects\\MemoryGame\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",

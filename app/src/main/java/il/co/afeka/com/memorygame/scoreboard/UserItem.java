@@ -28,7 +28,7 @@ public class UserItem implements Comparable<UserItem> {
 
     @Override
     public int compareTo(@NonNull UserItem o) {
-        return (this.score.compareTo(o.getScore()));
+        return (Integer.valueOf(this.score)>Integer.valueOf(o.getScore()) ? -1 : 1);
     }
 
 
