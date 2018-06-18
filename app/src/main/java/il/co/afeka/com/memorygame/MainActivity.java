@@ -189,10 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 new IntentFilter(DatabaseProvider.BROADCAST_ACTION));
         if (mScoreTableFragment != null) {
             updateTable();
-
         }
-
-
         super.onResume();
     }
 

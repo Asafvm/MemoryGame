@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,10 +30,10 @@ public class DatabaseProvider {
     private HashMap<String, UserItem> myInv = null;
     private boolean myFlag = false;
     private DatabaseReference myDatabaseRef;
-    private final String USER_DB = "Users/";
     private Context context;
 
     public DatabaseProvider(Context context) {
+        String USER_DB = "Users";
         myDatabaseRef = FirebaseDatabase.getInstance().getReference().child(USER_DB);
         this.context = context;
     }
@@ -40,9 +42,8 @@ public class DatabaseProvider {
     public List<UserItem> getMyInv() {
         if (myFlag) {
             return new ArrayList<>(myInv.values());
-        } else {
-            //data is not available at the moment
-        }
+        }  //data is not available at the moment
+
         return null;
     }
 
@@ -58,9 +59,13 @@ public class DatabaseProvider {
         @Override
         public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
             myInv = getInv(dataSnapshot);
-            myFlag = true;
-            Intent intent = new Intent(BROADCAST_ACTION);
-            context.sendBroadcast(intent);
+            if(myInv.values().size() >10)
+                removeLowestScore();
+            else {
+                myFlag = true;
+                Intent intent = new Intent(BROADCAST_ACTION);
+                context.sendBroadcast(intent);
+            }
         }
 
         @Override
@@ -116,30 +121,44 @@ public class DatabaseProvider {
 
     private void removeLowestScore() {
         UserItem target = null;
+
         for (UserItem item : myInv.values()) {
             if (target == null)
                 target = item;
             else {
-                if (target.getScore().compareTo(item.getScore()) > 0)
+                if (Integer.valueOf(target.getScore())>Integer.valueOf(item.getScore()))
                     target = item;
             }
         }
-        myDatabaseRef.child(USER_DB).child(target.getId()).removeValue();
+        final UserItem finalTarget1 = target;
+        myDatabaseRef.child(finalTarget1.getId()).removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.e(TAG,"Removed "+ finalTarget1.getName()+" - "+ finalTarget1.getScore());
+                        initializeDatabase();
 
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG,"Failed to remove "+ finalTarget1.getName()+" - "+ finalTarget1.getScore());
+                    }
+                });
 
     }
 
     private boolean userHighscore(UserItem item) {
         if (myFlag) {
             for (UserItem userItem : myInv.values()) {
-                if (item.getScore().compareTo(userItem.getScore()) > 0) {
+                if (Integer.valueOf(userItem.getScore())>Integer.valueOf(item.getScore())) {
                     return true;        //greater then any other score
                 }
             }
             return false;
-        } else {
-            //should wait for database
-        }
+        }  //should wait for database
+
         return false;
     }
 

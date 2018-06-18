@@ -1,36 +1,49 @@
 package il.co.afeka.com.memorygame;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
+import android.graphics.Rect;
 import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.Explode;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.BounceInterpolator;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,7 +53,7 @@ import il.co.afeka.com.memorygame.scoreboard.UserItem;
 
 import static android.app.PendingIntent.getActivity;
 
-public class GameActivity extends AppCompatActivity implements SensorEventListener {
+public class GameActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 0;
     private static String savedTAG = "";
     private static int savedID = 0;
@@ -53,16 +66,14 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private CountDownTimer cdtimer;
     private MediaPlayer mp;
     private SensorManager mSensorManager;
-    private final float[] mGravityReading = new float[3];
-    private final float[] mAccelerometerReading = new float[3];
-    private final float[] mMagnetometerReading = new float[3];
-
-    private final float[] mRotationMatrix = new float[9];
-    private final float[] mOrientationAngles = new float[3];
     private UserItem user;
     DatabaseProvider provider;
     private boolean tiltWarning = false;
     HashMap<Integer, String> foundList;
+    private SensorService.SensorBinder mBinder;
+    private SensorService mService;
+    private boolean isBound = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +83,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         provider = application.getDatabaseProvider();
         foundList = new HashMap<Integer, String>();
         play(R.raw.theme);
+
 
         initVars();
         int timer;
@@ -120,6 +132,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+
     private void playEffect(int id) {
 
         MediaPlayer effect = MediaPlayer.create(getBaseContext(), id);
@@ -141,7 +154,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
     private CountDownTimer createTimer(final int timer) {
         return new CountDownTimer(timer * 1000, 1000) {
-            int i = 0;
+            int i = 1;
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -150,19 +163,38 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                 tvTimer.setText(getString(R.string.timeremain) + timeRemain);
 
                 if (tiltWarning) {
-                    if (i % 5 == 0 && !foundList.isEmpty()) {
-                        Iterator<Integer> i = foundList.keySet().iterator();
-                        int id = i.next();
-                        findViewById(id).setTag(foundList.get(id));
-                        ((ImageButton) findViewById(id)).setImageResource(R.drawable.pic_star);
+                    if (i % 3 == 0 && !foundList.isEmpty()) {
+                        Iterator<Integer> iterator = foundList.keySet().iterator();
 
-                        id = i.next();
-                        findViewById(id).setTag(foundList.get(id));
-                        ((ImageButton) findViewById(id)).setImageResource(R.drawable.pic_star);
-                        moves++;
-                        decScore(moves * (timer - timeRemain));
+                        int cId = iterator.next();
+                        String cTag = foundList.get(cId);
+                        if (cTag.equals("1up")) {
+                            findViewById(cId).setTag(cTag);
+                            ((ImageButton) findViewById(cId)).setImageResource(R.drawable.pic_star);
+                            foundList.remove(cId);
+                            moves++;
+                            decScore(moves * (timer - timeRemain));
+                        } else {
+
+                            while (iterator.hasNext()) {
+                                int id = iterator.next();
+                                if (foundList.get(id) == cTag) {
+                                    findViewById(id).setTag(cTag);
+                                    ((ImageButton) findViewById(id)).setImageResource(R.drawable.pic_star);
+                                    findViewById(cId).setTag(cTag);
+                                    ((ImageButton) findViewById(cId)).setImageResource(R.drawable.pic_star);
+                                    foundList.remove(id);
+                                    foundList.remove(cId);
+                                    moves++;
+                                    decScore(moves * (timer - timeRemain));
+                                    break;
+                                }
+                            }
+                        }
+
 
                     }
+                    i++;
                 } else
                     i = 0;
             }
@@ -170,6 +202,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void onFinish() {
                 //time's up
+                animateButtons((ViewGroup) findViewById(android.R.id.content).getRootView(),false);
                 play(R.raw.lose);
                 popup(R.string.timesup);
 
@@ -238,7 +271,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                 img.setImageResource(R.drawable.pic_1up);
                 view.setBackgroundColor(Color.YELLOW);
                 addScore(250);
-                moves -= 1;
+                moves--;
+                foundList.put(img.getId(), img.getTag().toString());
                 view.setTag("flipped");
                 playEffect(R.raw.bonus1up);
             } else {
@@ -269,7 +303,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                             findViewById(view.getId()).setBackgroundColor(Color.LTGRAY);
 
                             if (moves > 0)
-                                moves -= 1;
+                                moves--;
                             else {
                                 play(R.raw.win);
                                 cdtimer.cancel();
@@ -278,6 +312,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                                 user.setId(String.valueOf(date.getTime()));
                                 getUserLocation();
                                 provider.updateRemote(user);
+                                animateButtons((ViewGroup) findViewById(android.R.id.content).getRootView(),true);
                                 popup(R.string.done);
                             }
 
@@ -332,44 +367,17 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         super.onDestroy();
     }
 
-    @Override
     protected void onResume() {
+        registerReceiver(sensorAlert,
+                new IntentFilter(SensorService.ALERT_ACTION));
+
         super.onResume();
-        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY), SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     protected void onPause() {
+        unregisterReceiver(sensorAlert);
         super.onPause();
-        mSensorManager.unregisterListener(this);
-
-    }
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_GRAVITY) {
-            System.arraycopy(event.values, 0, mGravityReading,
-                    0, mGravityReading.length);
-            Log.d(TAG, "Gyro moved: " + event);
-            if (event.values[1] < 5.5 || event.values[1] > 8.5) {
-                ((TextView) findViewById(R.id.warning)).setTextColor(Color.RED);
-                ((TextView) findViewById(R.id.warning)).setText("Tilt Warning");
-                tiltWarning = true;
-            } else {
-                ((TextView) findViewById(R.id.warning)).setTextColor(Color.GREEN);
-                ((TextView) findViewById(R.id.warning)).setText("Safe");
-                tiltWarning = false;
-
-            }
-            //((TextView)findViewById(R.id.warning)).setText(Arrays.toString(event.values));
-        }
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        mSensorManager.getRotationMatrix(mRotationMatrix, null,
-                mGravityReading, mMagnetometerReading);
-        mSensorManager.getOrientation(mRotationMatrix, mOrientationAngles);
     }
 
     public void getUserLocation() {
@@ -417,6 +425,107 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         user.setLng(location.getLongitude());
         user.setLat(location.getLatitude());
+    }
+
+
+    //((TextView)findViewById(R.id.warning)).setText(Arrays.toString(event.values));
+
+    private BroadcastReceiver sensorAlert = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.e(TAG, "Sensor alert!");
+            if (intent.getExtras().getBoolean("alert")) {
+                ((TextView) findViewById(R.id.warning)).setTextColor(Color.RED);
+                ((TextView) findViewById(R.id.warning)).setText("Tilt Warning");
+                tiltWarning = true;
+            } else {
+                ((TextView) findViewById(R.id.warning)).setTextColor(Color.GREEN);
+                ((TextView) findViewById(R.id.warning)).setText("Safe");
+                tiltWarning = false;
+            }
+
+        }
+    };
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Bind to LocalService
+        Intent intent = new Intent(this, SensorService.class);
+        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unbindService(mConnection);
+        isBound = false;
+    }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+
+            mBinder = (SensorService.SensorBinder) service;
+            mService = mBinder.getService();
+            isBound = true;
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBinder = null;
+            mService = null;
+            isBound = false;
+        }
+    };
+
+    private Explode makeExplodeTransition() {
+        Explode explode = new Explode();
+        explode.setDuration(3000);
+        explode.setInterpolator(new AnticipateOvershootInterpolator());
+        return explode;
+    }
+
+    private void toggleVisibility(View... views) {
+        // Loop through the views
+        for (View v : views) {
+            if (v.getVisibility() == View.VISIBLE) {
+                v.setVisibility(View.INVISIBLE);
+            } else {
+                v.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    private AutoTransition makeAutoTransition() {
+        AutoTransition autoTransition = new AutoTransition();
+        autoTransition.setDuration(3000);
+        autoTransition.setInterpolator(new BounceInterpolator());
+        return autoTransition;
+    }
+
+    public void animateButtons(ViewGroup layout, boolean win) {
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            View view = layout.getChildAt(i);
+            if (view instanceof ViewGroup)
+                animateButtons((ViewGroup) view,win);
+            else {
+                if (view instanceof ImageButton) {
+                    if (win)
+                        TransitionManager.beginDelayedTransition(layout, makeAutoTransition());
+                    else
+                        TransitionManager.beginDelayedTransition(layout, makeExplodeTransition());
+                    toggleVisibility(view);
+
+
+                }
+            }
+        }
     }
 }
 
